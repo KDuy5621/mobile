@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Login Form</title>
+  <link rel="stylesheet" href="/css/Login.css" />
+  <link
+          href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+          rel="stylesheet"
+          id="bootstrap-css"
+  />
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  .all_page_login {
+    width: 100%;
+    height: auto;
+  }
+  .head_page_login {
+    height: 120px;
+    line-height: 120px;
+    margin: 0 0 60px 0;
+    background-color: rgb(222, 222, 222);
+  }
+</style>
+<div class="all_page_login">
+  <div class="head_page_login">
+    <h1>Cart</h1>
+    <p>All the selected products in your cart</p>
+  </div>
+</div>
+<body>
+<div class="container">
+  <a th:href="@{/cart/clear}"><button class="btn-danger"><i class="bi bi-bag-x"> Clear Cart </i></button></a>
+  <div>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>UnitPrice</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <th:block th:each="cart :${getCartdetails}">
+        <th:block th:each="product:${getProduct}">
+          <tr th:if="${cart.getIdproduct()==product.getIdproduct()}">
+            <td>[[${product.product_name}]]</td>
+            <td>[[${cart.quantity}]]</td>
+            <td>[[${product.price}]] VND </td>
+            <td>[[${product.price*cart.quantity}]] VND </td>
+            <td>
+              <a th:href="@{'/cart/delete/'+${cart.idcartdetail}}">
+                <botton class="btn-danger">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    <i class="bi bi-x">Remove</i>
+                  </svg>
+                </botton>
+              </a>
+            </td>
+          </tr>
+        </th:block>
+      </th:block>
+      </tbody>
+    </table>
+    <a th:href="@{'/products/show/'}">
+      <button type="button" class="btn btn-success">
+        <i class="bi bi-arrow-left-circle"> Continue Shopping </i>
+      </button>
+    </a>
+  </div>
+</div>
+</body>
+</html>

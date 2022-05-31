@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<style>
+    .header{
+        width: 100%;
+        margin: 0px;
+        background-color: #eeeeee;
+        padding: 40px 20px 40px 20px;
+        display: inline-flex;
+    }
+    .header button{
+        height: 40px;
+        margin-left: 83%;
+    }
+    .AddProducts .Add-title{
+        margin-top: 20px;
+        margin-left: 50px;
+        font-size: 30px;
+        border-bottom:1px solid #d9d9d9;
+        width: 90%;
+    }
+    .AddProducts .properties{
+        margin-top: 10px;
+        display: flex;
+    }
+    .properties p{
+        text-align: right;
+    }
+    .AddProducts input, .product-des, .product-condition{
+        margin-left: 15px;
+    }
+    .add-product{
+        margin-left: 17.5%;
+    }
+    label{
+        margin-right: 10px;
+    }
+</style>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="css/add-product.css" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
+<body>
+<div class="header">
+    <div>
+        <h1>Product</h1>
+        <p>Add products</p>
+    </div>
+        <button th:if="${usert}" class="logout btn btn-danger">
+            <a th:href="@{/logout}"> Logout</a>
+        </button>
+</div>
+<div class="AddProducts">
+    <p class="Add-title">Add new product</p>
+    <form th:action="@{/products/add}" method="post" th:object="${product}" style="max-width: 500px;">
+        <div class="properties">
+            <label class="col-sm-4 col-form-label"> ProductName</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" required maxlength="45"
+                       th:field="*{product_name}">
+            </div>
+        </div>
+        <div class="properties">
+            <label class="col-sm-4 col-form-label"> Unit Price</label>
+            <div class="col-sm-8">
+                <input type="number" class="form-control" th:field="*{price}" required min="0">
+            </div>
+        </div>
+        <div class="properties">
+            <label class="col-sm-4 col-form-label"> Units In Stock</label>
+            <div class="col-sm-8">
+                <input type="number" class="form-control" th:field="*{stock}" required min="1">
+            </div>
+        </div>
+        <div class="properties">
+            <label class="col-sm-4 col-form-label"> Description</label>
+            <div class="col-sm-8">
+
+                <textarea th:field="*{description}" class="form-control" required></textarea>
+            </div>
+        </div>
+        <div class="properties">
+            <label class="col-sm-4 col-form-label"> Manufacturer</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" th:field="*{manufacturer}">
+            </div>
+        </div>
+        <div class="properties">
+            <label class="col-sm-4 col-form-label"> Category</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" th:field="*{category}">
+            </div>
+        </div>
+        <div class="properties">
+            <label class="col-sm-4 col-form-label"> Condition</label>
+            <div class="col-sm-8">
+                <input type="radio" name="condition" value="1" th:field="*{condition_id}">
+                <label>New</label>
+                <input type="radio" name="condition" value="2" th:field="*{condition_id}">
+                <label>Old</label>
+                <input type="radio" name="condition" value="3" th:field="*{condition_id}">
+                <label>Refurbished</label>
+            </div>
+        </div>
+        <div class="properties">
+            <label class="col-sm-4 col-form-label"> Product Image File</label>
+            <div class="properties">
+                <input type="file" class="product-file" name="picture" accept="image/png, image/jpeg"/>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary m-2"> Add</button>
+            <button type="reset" class="btn btn-danger m-2">Clear</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

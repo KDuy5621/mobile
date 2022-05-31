@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>[[${products.product_name}]]</title>
+    <link rel="stylesheet" href="./css/detail.css"/>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
+<body>
+<div class="header">
+    <h1>Details Products</h1>
+    <div th:if="${mess}" class="alert alert-success text-center">
+        [[${mess}]]
+    </div>
+
+</div>
+<div class="detail">
+    <div class="pro-img">
+        <img th:src="${products.picture}" width="100px">
+    </div>
+    <div class="content">
+        <div class="pro-name">
+            <h2>[[${products.product_name}]]</h2>
+        </div>
+        <div class="pro-des">
+            <p>[[${products.description}]]</p>
+        </div>
+        <div class="pro-code"><b>Item Code : </b><span class="code">[[${products.idproduct}]]</span></div>
+        <div class="pro-manufacturer"><b>manufacturer : </b>[[${products.manufacturer}]]</div>
+        <div class="pro-category"><b>category : </b><a href="#">[[${products.category}]]</a></div>
+        <div class="pro-unit"><b>Available units in stock : </b><td> [[${products.stock}]]</td></div>
+        <div class="pro-price">[[${products.price}]]</div>
+        <td>
+            <a th:href="@{'/products/show/'}">
+                <button type="button" class="btn btn-primary m-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                        <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                        <i class="bi bi-cart4"> Back </i>
+                    </svg>
+                </button>
+            </a>
+            <a th:href="@{'/products/addtocart/'+${products.idproduct}}">
+                <button  class="btn btn-warning mt-1" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                        <i class="bi bi-cart4">Order Now</i>
+                    </svg>
+                </button>
+            </a>
+        </td>
+    </div>
+</div>
+</body>
+</html>
